@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="flex-row justify-between align-center">
+        <h2>Subscription</h2>
+        <div>
+            <button onclick="clearMessages()" class="btn btn-outline btn-sm">Clear Messages</button>
+        </div>
+    </div>
+
+    <div class="flex-row" style="gap: 20px; flex-wrap: wrap;">
+        <!-- Left: Controls -->
+        <div style="flex: 1; min-width: 250px;">
+            <form action="{{ url_for('toggle_listen') }}" method="POST" id="subForm">
+                <label>Broker:</label>
+                <!-- We add onchange to update the UI state to match the selected broker (simple JS for UX) -->
+                <select name="broker_id" id="brokerSelect" required onchange="updateFormState()">
+                    {% for b in active_brokers %}
+                    <option value="{{ b.id }}" data-listening="{{ 'true' if b.is_listening else 'false' }}"
+                        data-topic="{{ b.current_topic }}">
+                        {{ b.name }} {{ '(Listening)' if b.is_listening else '' }}
+                    </option>
+                    {% endfor %}
+                </select>
+
+                <label>Topic:</label>
+                <input type="text" name="topic" id="topicInput" placeholder="Topic (empty = all)">
+
+                <input type="hidden" name="action" id="actionInput" value="start">
+
+                <div class="flex-row mt-1">
+                    <button type="submit" class="btn" id="toggleBtn" style="flex:1;">Start Listening</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right: Message Log -->
+        <div style="flex: 3; min-width: 300px;">
+            <div id="messages"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const messagesDiv = document.getElementById('messages');
+    let evtSource = null;
+
+    function startStream() {
+        if (evtSource) { return; }
+        console.log("Starting SSE stream...");
+        evtSource = new EventSource("{{ url_for('stream') }}");
+
+        evtSource.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            const line = document.createElement('div');
+            line.className = 'msg-line';
+            line.innerHTML = `<span class="msg-time">[${data.timestamp}]</span> <strong>${data.broker_name}</strong> | ${data.topic}: <span style="color: #fff;">${data.payload}</span>`;
+            messagesDiv.appendChild(line);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        };
+
+        evtSource.onerror = function () {
+            // console.log("EventSource failed.");
+        };
+    }
+
+    startStream();
+
+    function clearMessages() {
+        messagesDiv.innerHTML = '';
+    }
+
+    // Dynamic UI update based on selection
+    function updateFormState() {
+        const select = document.getElementById('brokerSelect');
+        if (select.selectedIndex === -1) return;
+
+        const option = select.options[select.selectedIndex];
+        const isListening = option.getAttribute('data-listening') === 'true';
+        const currentTopic = option.getAttribute('data-topic');
+
+        const topicInput = document.getElementById('topicInput');
+        const actionInput = document.getElementById('actionInput');
+        const btn = document.getElementById('toggleBtn');
+
+        if (isListening) {
+            topicInput.value = currentTopic;
+            // topicInput.disabled = true; // Optional: disable edit while listening
+            actionInput.value = 'stop';
+            btn.textContent = 'Stop Listening';
+            btn.className = 'btn btn-danger';
+        } else {
+            topicInput.value = '';
+            // topicInput.disabled = false;
+            actionInput.value = 'start';
+            btn.textContent = 'Start Listening';
+            btn.className = 'btn';
+        }
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', updateFormState);
+</script>
+{% endblock %}

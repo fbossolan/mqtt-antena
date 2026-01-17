@@ -1,0 +1,19 @@
+# Avoid baking the database into the image
+data/
+*.db
+*.db-journal
+
+# Python junk
+__pycache__/
+*.pyc
+.ruff_cache/
+
+# Development files
+.git/
+.gitignore
+Makefile
+docker-compose.yml
+README.md
+LICENSE
+docs/
+tests/

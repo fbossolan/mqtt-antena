@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex-row justify-between align-center" style="margin-bottom: 2rem;">
+    <h2>Registered Brokers</h2>
+    <button onclick="toggleAddForm()" class="btn">Add Broker</button>
+</div>
+
+<div class="card" id="addBrokerForm" style="display: none;">
+    <h3>Add New Broker</h3>
+    <form method="POST" class="flex-row" style="flex-wrap: wrap; gap: 10px;">
+        <input type="text" name="name" placeholder="Name (optional)" style="flex: 1; min-width: 150px; margin: 0;">
+        <input type="text" name="ip" placeholder="IP Address" required style="flex: 1; min-width: 150px; margin: 0;">
+        <input type="number" name="port" placeholder="Port (1883)" value="1883" style="width: 100px; margin: 0;">
+        <input type="text" name="username" placeholder="User" style="flex: 1; min-width: 100px; margin: 0;">
+        <input type="password" name="password" placeholder="Pass" style="flex: 1; min-width: 100px; margin: 0;">
+        <button type="submit" name="add" class="btn">Add</button>
+    </form>
+</div>
+
+<div class="broker-list">
+    {% for item in brokers %}
+    <div class="broker-item">
+        <div class="broker-info">
+            <h3 style="margin: 0 0 5px 0;">
+                <span class="status-dot status-{{ item.status }}"></span>
+                {{ item.obj.name }}
+            </h3>
+            <small class="text-muted">{{ item.obj.ip }}:{{ item.obj.port }} | User: {{ item.obj.username or 'None'
+                }}</small>
+            {% if item.error %}
+            <br><small style="color: var(--danger);">{{ item.error }}</small>
+            {% endif %}
+        </div>
+        <div class="broker-actions">
+            {% if item.status == 'connected' %}
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="broker_id" value="{{ item.obj.id }}">
+                <button type="submit" name="disconnect" class="btn btn-sm btn-outline">Disconnect</button>
+            </form>
+            {% else %}
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="broker_id" value="{{ item.obj.id }}">
+                <button type="submit" name="connect" class="btn btn-sm">Connect</button>
+            </form>
+            {% endif %}
+
+            <a href="{{ url_for('edit_broker', broker_id=item.obj.id) }}" class="btn btn-sm btn-outline">Edit</a>
+
+            <form method="POST" style="display:inline;" onsubmit="return confirm('Delete this broker?');">
+                <input type="hidden" name="broker_id" value="{{ item.obj.id }}">
+                <button type="submit" name="delete" class="btn btn-sm btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <p style="text-align: center; color: var(--text-muted);">No brokers registered.</p>
+    {% endfor %}
+</div>
+
+<script>
+    function toggleAddForm() {
+        const form = document.getElementById('addBrokerForm');
+        if (form.style.display === 'none') {
+            form.style.display = 'block';
+        } else {
+            form.style.display = 'none';
+        }
+    }
+</script>
+{% endblock %}

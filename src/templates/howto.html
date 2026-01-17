@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>How to Use MQTT Antena</h2>
+
+<div class="card">
+    <h3 style="color: var(--primary);">1. Brokers Management</h3>
+    <p>Go to the <strong>Brokers</strong> page to manage your connections.</p>
+    <ul>
+        <li><strong>Add a Broker:</strong> Click the "Add Broker" button to open the form. Enter the IP address
+            (required), Port (default 1883), and optional credentials.</li>
+        <li><strong>Connect:</strong> Click the "Connect" button next to a broker. A <span
+                class="status-dot status-connected"></span> green dot indicates success.</li>
+        <li><strong>Edit:</strong> Click "Edit" to change connection details.</li>
+        <li><strong>Disconnect/Delete:</strong> Use the respective buttons to close connections or remove the broker
+            from your list.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h3 style="color: var(--primary);">2. Subscription (Live View)</h3>
+    <p>Go to the <strong>Subscription</strong> page to monitor messages.</p>
+    <ol>
+        <li>Select a <strong>Connected Broker</strong> from the dropdown list.</li>
+        <li>Enter a <strong>Topic</strong> to listen to (e.g., <code>sensors/temp</code>). Leave active empty to listen
+            to everything (<code>#</code>).</li>
+        <li>Click <strong>Start Listening</strong>. messages will stream in real-time in the console box.</li>
+        <li>Click <strong>Stop Listening</strong> to pause the stream or change topics.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h3 style="color: var(--primary);">3. Publishing Messages</h3>
+    <p>Go to the <strong>Publish</strong> page to send messages.</p>
+    <ul>
+        <li>Select a target broker.</li>
+        <li>Enter the specific <strong>Topic</strong>.</li>
+        <li>Type your message in the text area and click <strong>Publish</strong>.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h3 style="color: var(--primary);">💾 Important: Data & Persistence</h3>
+    <p>Understanding what stays and what goes:</p>
+    <ul>
+        <li><strong>Persistent:</strong> Your User account and all registered Broker configurations are saved in the
+            database.</li>
+        <li><strong>Volatile:</strong> Connection statuses and the live message console are <strong>not</strong> saved.
+            If you refresh the page or the server restarts, you will need to reconnect to your brokers and the console
+            history will be cleared.</li>
+    </ul>
+</div>
+{% endblock %}

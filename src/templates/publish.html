@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Publish Message</h2>
+<div class="card">
+    <form method="POST">
+        <label>Select Broker:</label>
+        <select name="broker_id" required>
+            {% for b in active_brokers %}
+            <option value="{{ b.id }}">{{ b.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Topic:</label>
+        <input type="text" name="topic" placeholder="e.g. sensors/temp" required>
+
+        <label>Message:</label>
+        <textarea name="message" rows="5" placeholder="Enter payload..." required></textarea>
+
+        <button type="submit" class="btn mt-1">Publish</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Broker</h2>
+<div class="card">
+    <form method="POST">
+        <label>Name (Optional):</label>
+        <input type="text" name="name" value="{{ broker.name }}">
+
+        <label>IP Address:</label>
+        <input type="text" name="ip" value="{{ broker.ip }}" required>
+
+        <label>Port:</label>
+        <input type="number" name="port" value="{{ broker.port }}" required>
+
+        <label>Username:</label>
+        <input type="text" name="username" value="{{ broker.username or '' }}">
+
+        <label>Password:</label>
+        <input type="password" name="password" value="{{ broker.password or '' }}">
+
+        <div class="flex-row mt-1">
+            <button type="submit" class="btn">Update Broker</button>
+            <a href="{{ url_for('brokers') }}" class="btn btn-outline">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

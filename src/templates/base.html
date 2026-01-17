@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT Antena</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+</head>
+
+<body>
+    <header>
+        <div class="flex-row align-center">
+            <span style="font-size: 2rem; margin-right: 10px;">📡</span>
+            <h1>MQTT Antena</h1>
+        </div>
+        <nav>
+            {% if session.get('user_id') %}
+            <a href="{{ url_for('brokers') }}">Brokers</a>
+            <a href="{{ url_for('subscription') }}">Subscription</a>
+            <a href="{{ url_for('publish') }}">Publish</a>
+            <a href="{{ url_for('howto') }}">How to Use</a>
+            <a href="{{ url_for('logout') }}">Log Off</a>
+            {% endif %}
+            <button class="btn-outline btn-sm" onclick="toggleTheme()"
+                style="margin-left: 15px; font-size: 1.2rem; border: none;">
+                <span id="theme-icon">☀️</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <script>
+        // Simple Theme Toggle
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const target = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('theme', target);
+            updateIcon(target);
+        }
+
+        function updateIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            if (theme === 'dark') {
+                icon.textContent = '🌙';
+            } else {
+                icon.textContent = '☀️';
+            }
+        }
+
+        // Init
+        const saved = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', saved);
+        document.addEventListener('DOMContentLoaded', () => updateIcon(saved));
+    </script>
+</body>
+
+</html>

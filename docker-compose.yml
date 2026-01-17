@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  mqtt-antena:
+    build: .
+    container_name: mqtt-antena
+    ports:
+      - "8585:8585"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

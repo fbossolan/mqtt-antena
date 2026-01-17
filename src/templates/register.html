@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; min-height: 60vh;">
+    <div class="card" style="width: 100%; max-width: 400px; text-align: center;">
+        <h2 style="margin-bottom: 2rem; color: var(--primary);">Create Account</h2>
+        <form method="POST">
+            <input type="text" name="username" placeholder="Choose Username" required>
+            <input type="password" name="password" placeholder="Choose Password" required>
+            <button type="submit" class="btn" style="width: 100%;">Register</button>
+        </form>
+        <div style="margin-top: 1rem;">
+            <a href="{{ url_for('login') }}" style="color: var(--primary); text-decoration: none;">Already have an
+                account? Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
