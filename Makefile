@@ -6,7 +6,7 @@ PIP=$(VENV)/bin/pip
 PYTHON_VERSION_ARG=$(shell cat .python-version)
 VERSION_TAG=$(shell cat VERSION)
 
-.PHONY: build lint format clean publish run venv destroy help
+.PHONY: build lint format clean publish run venv destroy help release
 
 help: ## Show this help message
 	@echo "Available commands:"
@@ -51,3 +51,8 @@ publish: build ## Tag and push image to Docker Hub
 destroy: ## Remove local containers and images
 	docker-compose down --rmi local --volumes --remove-orphans
 	docker rmi $(IMAGE_NAME) || true
+
+release: ## Update VERSION, generate changelog, tag, and push (usage: make release v=1.2.3)
+	@if [ -z "$(v)" ]; then echo "Error: v is not set. Use 'make release v=1.2.3'"; exit 1; fi
+	@chmod +x create_release.sh
+	@./create_release.sh $(v)
