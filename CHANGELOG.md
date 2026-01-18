@@ -1,36 +1,71 @@
-## [unreleased]
+# Changelog
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+
+
 
 ### Bug Fixes
 
-- Seggregating user brokers
-## [1.1.0] - 2026-01-18
+- seggregating user brokers
 
-### Features
-
-- Initial app files
-- Logo images
-- Unique source for python version
-- Upgrading the python version
-- Help recipe
-- Help recipe
-- Adding the app version automatically
-
-### Bug Fixes
-
-- Fixed error in the changelog version of 2026-01-17
-
-### Refactor
-
-- Code refactor and cleanup
 
 ### Documentation
 
-- Updating readme
-- Changelog init
-- Updating the changelog
-- Adding/ updating docstrings
+- updating the changelog
 
-### Miscellaneous Tasks
 
-- Linting
-- Updating gitignore
+### Features
+
+- adding cliif tool to automatically generate changelog
+
+
+## [v1.1.0] - 2026-01-18
+
+
+
+### Bug Fixes
+
+- fixed error in the changelog version of 2026-01-17
+
+
+### Documentation
+
+- updating readme
+
+- changelog init
+
+- updating the changelog
+
+- adding/ updating docstrings
+
+
+### Features
+
+- initial app files
+
+- logo images
+
+- unique source for python version
+
+- upgrading the python version
+
+- help recipe
+
+- help recipe
+
+- adding the app version automatically
+
+
+### Maintenance
+
+- linting
+
+- updating gitignore
+
+
+### Refactoring
+
+- code refactor and cleanup
+
+
