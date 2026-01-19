@@ -11,6 +11,13 @@ All notable changes to this project will be documented in this file.
 
 - fix broken steps in the release script
 
+- fix broken steps in the release script
+
+
+### Maintenance
+
+- update changelog
+
 
 ## [v1.2.0] - 2026-01-19
 
