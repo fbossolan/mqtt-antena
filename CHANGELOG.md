@@ -14,10 +14,34 @@ All notable changes to this project will be documented in this file.
 
 - updating the changelog
 
+- updating changelog
+
 
 ### Features
 
 - adding cliif tool to automatically generate changelog
+
+- configuring precommit
+
+- creating commands to generate a release
+
+- creating commands to generate a release
+
+- script for automating releases
+
+- script for automating releases
+
+- script for automating releases
+
+
+### Maintenance
+
+- deleting old files
+
+
+### Refactoring
+
+- refactoring the cliff config file
 
 
 ## [v1.1.0] - 2026-01-18
@@ -31,13 +55,39 @@ All notable changes to this project will be documented in this file.
 
 ### Documentation
 
+- adding/ updating docstrings
+
+
+### Features
+
+- help recipe
+
+- help recipe
+
+- adding the app version automatically
+
+
+### Maintenance
+
+- updating gitignore
+
+
+### Refactoring
+
+- code refactor and cleanup
+
+
+## [v1.0.0] - 2026-01-17
+
+
+
+### Documentation
+
 - updating readme
 
 - changelog init
 
 - updating the changelog
-
-- adding/ updating docstrings
 
 
 ### Features
@@ -50,22 +100,9 @@ All notable changes to this project will be documented in this file.
 
 - upgrading the python version
 
-- help recipe
-
-- help recipe
-
-- adding the app version automatically
-
 
 ### Maintenance
 
 - linting
-
-- updating gitignore
-
-
-### Refactoring
-
-- code refactor and cleanup
 
 
