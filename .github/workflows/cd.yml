@@ -39,16 +39,3 @@ jobs:
             flvbssln/mqtt-antena:${{ steps.version.outputs.version }}
             flvbssln/mqtt-antena:latest
 
-      - name: Generate changelog
-        uses: orhun/git-cliff-action@v4
-        with:
-          config: cliff.toml
-          args: --latest --strip header
-        env:
-          OUTPUT: RELEASE_NOTES.md
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ steps.version.outputs.version }}
-          body_path: RELEASE_NOTES.md
