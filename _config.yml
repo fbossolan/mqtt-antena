@@ -3,6 +3,9 @@
 remote_theme: jekyll/minima@d4d779a
 title: 📡 MQTT Antena
 description: A tool to help develop & test MQTT messages
+author:
+   name: buzzlightyear-dev
+   email: your-email@domain.com
 minima:
   skin: dark
 
