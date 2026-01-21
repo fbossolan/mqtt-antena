@@ -3,15 +3,5 @@ theme: minima
 minima:
   skin: dark
 
-  social_links:
-  - title: Jekyll repository at GitHub
-    icon: github
-    url: "https://github.com/jekyll/jekyll"
-  - title: Jekyll at X (formerly Twitter)
-    icon: x-twitter
-    url: "https://x.com/jekyllrb"
 title: 📡 MQTT Antena 
-#description: A tool to help in the development of MQTT topics
-#show_downloads: false
-#github:
-#    is_project_page: false
+author: github.com/buzzlightyear-dev
