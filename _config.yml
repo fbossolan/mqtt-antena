@@ -4,5 +4,9 @@ remote_theme: jekyll/minima@d4d779a
 minima:
   skin: dark
 
-title: 📡 MQTT Antena 
+nav_pages:
+  - about.md
+
+title: 📡 MQTT Antena
+
 author: github.com/buzzlightyear-dev
