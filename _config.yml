@@ -1,7 +1,15 @@
 #remote_theme: pages-themes/hacker@v0.2.0
 theme: minima
 minima:
-  skin: auto
+  skin: dark
+
+  social_links:
+  - title: Jekyll repository at GitHub
+    icon: github
+    url: "https://github.com/jekyll/jekyll"
+  - title: Jekyll at X (formerly Twitter)
+    icon: x-twitter
+    url: "https://x.com/jekyllrb"
 title: 
 #description: A tool to help in the development of MQTT topics
 #show_downloads: false
