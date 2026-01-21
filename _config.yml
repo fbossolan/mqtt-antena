@@ -2,6 +2,7 @@
 #theme: minima
 remote_theme: jekyll/minima@d4d779a
 title: 📡 MQTT Antena
+description: A tool to help develop & test MQTT messages
 minima:
   skin: dark
 
