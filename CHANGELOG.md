@@ -7,6 +7,33 @@ All notable changes to this project will be documented in this file.
 
 ### CI/CD
 
+- updating cd file
+
+- updating cd file
+
+
+### Features
+
+- add password confirmation in the registration form
+
+- password reset cli utility
+
+- feature to reset password
+
+
+### Maintenance
+
+- changing docker username
+
+- changing docker username
+
+
+## [v1.3.0] - 2026-01-19
+
+
+
+### CI/CD
+
 - adding continuous integration
 
 - adding cicd
@@ -32,6 +59,8 @@ All notable changes to this project will be documented in this file.
 - update changelog
 
 - release v1.3.0
+
+- update changelog
 
 
 ## [v1.2.0] - 2026-01-19
