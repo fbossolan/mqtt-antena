@@ -27,6 +27,10 @@ All notable changes to this project will be documented in this file.
 
 - changing docker username
 
+- update changelog
+
+- release v1.3.1
+
 
 ## [v1.3.0] - 2026-01-19
 
