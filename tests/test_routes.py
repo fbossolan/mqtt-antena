@@ -12,7 +12,11 @@ def test_register_login_logout(client):
     # Register
     rv = client.post(
         "/register",
-        data={"username": "newuser", "password": "password123"},
+        data={
+            "username": "newuser",
+            "password": "password123",
+            "confirm_password": "password123",
+        },
         follow_redirects=True,
     )
     assert b"Account created!" in rv.data
@@ -24,6 +28,22 @@ def test_register_login_logout(client):
     # Logout
     rv = client.get("/logout", follow_redirects=True)
     assert b"Login" in rv.data
+    with client.session_transaction() as sess:
+        assert "user_id" not in sess
+
+
+def test_register_password_mismatch(client):
+    """Test that registration fails when passwords don't match."""
+    rv = client.post(
+        "/register",
+        data={
+            "username": "mismatchuser",
+            "password": "password123",
+            "confirm_password": "differentpassword",
+        },
+        follow_redirects=True,
+    )
+    assert b"Passwords do not match" in rv.data
     with client.session_transaction() as sess:
         assert "user_id" not in sess
 

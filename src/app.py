@@ -90,8 +90,11 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        confirm_password = request.form["confirm_password"]
 
-        if User.query.filter_by(username=username).first():
+        if password != confirm_password:
+            flash("Passwords do not match", "error")
+        elif User.query.filter_by(username=username).first():
             flash("Username already exists", "error")
         else:
             new_user = User(username=username)
