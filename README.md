@@ -38,7 +38,7 @@ MQTT Antena is a simple, modern, web-based MQTT client application built with Py
 ##  Getting Started
 
 ### Quick Start 
-**Creating a Docker Container**
+🐳 **Running with Docker**
 
 The easiest way to get started is to create a docker container:
 ```bash
@@ -66,13 +66,15 @@ Then run:
 ```bash
 docker-compose up -d
 ```
+<br>
 
-**Running from the raw code**
-If you prefer you can [clone the repo](https://github.com/fbossolan/mqtt-antena/tree/main) then run the commands:
+👨🏻‍💻 **Running from the raw code**
 
-   ```
-   make run-flask
-   ```
+If you prefer you can [clone the repo](https://github.com/fbossolan/mqtt-antena/tree/main) then run the command:
+
+```
+make run-flask
+```
 
 No matter the way you choose to run the application it can be accessed at [http://localhost:8585/](http://localhost:8585/) (or the port you defined when building the container).
 
@@ -101,10 +103,26 @@ Once connected to a broker you can publish messages to topics. You can specify Q
 <br><br>
 ### Password Reset:
 Inside a container's terminal, run:
-````
+```
 NO_MONKEY_PATCH=1 FLASK_APP=src/app.py flask reset-password <USERNAME> <NEW PASSWORD>
 ```
 
 ##  License
 
 This project is licensed under the MIT License.
+
+##  Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request or open an issue on Github. If the project grows we can write a more detailed contribution guide.
+
+## Regarding the Name
+
+`Antenna` is a reference to the antenna of a radio, which is used to receive and transmit radio waves. In this case, the radio waves are MQTT messages. 
+<br> But why "Antena" and not "Antenna"? 
+<br> Because in Portuguese "Antena" is written with one "n", and we want to give a little latin touch to the application.
+
+
+
+<br>
+If you like this project, please consider giving it a ⭐ on github.
+<p style="text-align: center;">Made in 🇧🇷</p>
