@@ -117,7 +117,7 @@ A `Makefile` is provided to simplify development tasks:
 -   **Linting:** `make lint` (Runs Ruff check).
 -   **Formatting:** `make format` (Runs Ruff format).
 -   **Password Reset:** `make reset-password user=USER pass=PASS` (Resets a user password).
-    -   *Inside a container:* `NO_MONKEY_PATCH=1 FLASK_APP=src/app.py flask reset-password USER PASS`
+    -   *Inside a container:* `NO_MONKEY_PATCH=1 FLASK_APP=src/app.py flask reset-password USERNAME PASSWORD`
 -   **Cleanup:** `make clean` (Removes caches and `.venv`).
 -   **Publish Image:** `make publish TAG=vx.y.z` (Pushes to `flvbssln/mqtt-antena`).
 -   **Destroy Project:** `make destroy` (Removes local containers, images, and volumes).
