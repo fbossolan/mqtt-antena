@@ -1,0 +1,23 @@
+#remote_theme: pages-themes/hacker@v0.2.0
+#theme: minima
+remote_theme: jekyll/minima@d4d779a
+title: 📡 MQTT Antena
+description: A tool to help develop & test MQTT messages
+author: fbossolan
+minima:
+  skin: dark
+
+  social_links:
+     - title: Minima Theme repository at GitHub
+       icon: github
+       url: "https://github.com/jekyll/minima"
+     - title: Jekyll at X (formerly Twitter)
+       icon: x-twitter
+       url: "https://x.com/jekyllrb"
+  nav_pages:
+     - about.md
+  hide_site_feed_link: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
