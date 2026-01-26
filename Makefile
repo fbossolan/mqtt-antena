@@ -26,6 +26,9 @@ build: ## Build the Docker image (local architecture)
 run: build ## Start the application via Docker Compose
 	docker-compose up -d
 
+run-flask: venv ## Start the application via Flask
+	$(VENV)/bin/python src/app.py
+
 lint: venv ## Run code linting with Ruff
 	$(VENV)/bin/ruff check src --fix
 
