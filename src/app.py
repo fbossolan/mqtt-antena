@@ -45,6 +45,10 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 
+with app.app_context():
+    db.create_all()
+
+
 def get_version():
     """Read the version from the VERSION file."""
     version_file = os.path.join(
@@ -385,6 +389,4 @@ def publish():
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(host="0.0.0.0", port=8585, debug=True)
