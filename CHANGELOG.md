@@ -1,6 +1,39 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+
+
+### Documentation
+
+- adding images to readme
+
+- adding github repo link
+
+- adding analytics in project page
+
+- adding analytics in project page
+
+- specifying command to reset a user's  password
+
+
+### Features
+
+- command to run without docker
+
+- updating the instructions to set up
+
+
+### Maintenance
+
+- update changelog
+
+- ignoring changelog commit messages
+
+- ignoring development files
+
+
 ## [v1.4.0] - 2026-01-26
 
 
