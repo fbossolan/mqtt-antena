@@ -55,4 +55,6 @@ commit_parsers = [
 ignore_commits = [
   "^Merge branch",
   "^Merge pull request",
+  "^update changelog",
 ]
+
