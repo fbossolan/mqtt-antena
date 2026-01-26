@@ -1,6 +1,34 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+
+
+### Bug Fixes
+
+- adding one more commit and push to have changelog up to date
+
+- fixing bug in the app initialization
+
+
+### CI/CD
+
+- specifying linux platforms for the image build
+
+
+### Documentation
+
+- updating readme
+
+
+### Maintenance
+
+- updating changelog
+
+- release v1.3.2
+
+
 ## [v1.3.1] - 2026-01-25
 
 
