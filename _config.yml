@@ -2,7 +2,7 @@
 #theme: minima
 remote_theme: jekyll/minima@d4d779a
 title: 📡 MQTT Antena
-description: A tool to help develop & test MQTT messages
+description: A tool to help develop, test & monitor MQTT messages
 author: fbossolan
 google_analytics: G-BE8RD9ST7H
 minima:
