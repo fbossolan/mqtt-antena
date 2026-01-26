@@ -6,8 +6,7 @@
 📡 MQTT Antena
 
 MQTT Antena is a simple, modern, web-based MQTT client application built with Python and Flask. It allows users to manage multiple MQTT broker connections by connecting to a broker, monitor real-time message streams, and publish messages through a clean web interface. It is intended to be used as a development tool for self-hosted MQTT-based applications. It is very useful for testing and debugging IoT messages between sensors and applications.
-
-![Brokers](./docs/img/img-brokers.png)<br><br>
+<br><br>
 ![Subscriptions](./docs/img/img-subscription2.png)
 
 ##  Features
@@ -20,15 +19,6 @@ MQTT Antena is a simple, modern, web-based MQTT client application built with Py
 -   **Message Publishing:** Send MQTT messages with configurable **QoS** (0, 1, 2) and **Retain** flags.
 -   **Aesthetics:** Modern, responsive UI with light and dark mode support.
 -   **Persistence:** Persistent database storage using Docker volumes.
--   **Developer Friendly:** Includes a `Makefile` for common tasks and development.
-
-##  Tech Stack
-
--   **Backend:** Python 3.11, Flask, Flask-SQLAlchemy, Paho-MQTT, Gunicorn, Eventlet.
--   **Frontend:** HTML5, CSS3 (Vanilla), JavaScript (Minimal for SSE/Theme).
--   **Database:** SQLite.
--   **Deployment:** Docker, Docker Compose.
--   **Tooling:** Ruff (Linting/Formatting), Make.
 
 ##  Security
 
@@ -56,8 +46,15 @@ You can configure the application using the following environment variables:
 
 ##  Getting Started
 
-### Quick Start (using Docker Hub)
-If you just want to run the application without downloading the source code, use the following `docker-compose.yml`:
+### Quick Start 
+**Creating a Docker Container**
+
+The easiest way to get started is to create a docker container:
+```bash
+docker run -d --name mqtt-antena -p 8585:8585 -v ./data:/app/data -e SECRET_KEY=your_secret_key_here --restart unless-stopped fbossolan/mqtt-antena:latest
+```
+<br>
+Or you can create a docker-compose.yml file:
 
 ```yaml
 version: '3.8'
@@ -79,60 +76,36 @@ Then run:
 docker-compose up -d
 ```
 
-### Developing from Source
-#### Prerequisites
+**Running from the raw code**
+If you prefer you can [clone the repo](https://github.com/fbossolan/mqtt-antena/tree/main) then run the commands:
 
--   [Docker](https://www.docker.com/get-started)
--   [Docker Compose](https://docs.docker.com/compose/install/)
--   [pyenv](https://github.com/pyenv/pyenv) (Optional, but recommended)
-
-#### Local Setup (Virtual Environment)
-
-For local development, linting, and formatting, it is recommended to use the provided `venv` target:
-
-1. **Ensure you have Python 3.11 installed** (e.g., via `pyenv install 3.11.14`).
-2. **Create and sync the virtual environment**:
-   ```bash
-   make venv
    ```
-3. **Activate the environment**:
-   ```bash
-   source .venv/bin/activate
+   make run-flask
    ```
 
-#### Running the Application (Recommended)
+No matter the way you choose to run the application it can be accessed at [http://localhost:8585/](http://localhost:8585/) (or the port you defined when building the container).
 
-The easiest way to run MQTT Antena is using Docker Compose:
-
-```bash
-docker-compose up -d --build
-```
-
-Access the application at: **http://localhost:8585**
-
-### Development Workflow
-
-A `Makefile` is provided to simplify development tasks:
-
--   **Virtual Env:** `make venv` (Creates and syncs the `.venv`).
--   **Build Image:** `make build` (Builds the Docker image).
--   **Run Application:** `make run` (Starts app via Docker Compose).
--   **Linting:** `make lint` (Runs Ruff check).
--   **Formatting:** `make format` (Runs Ruff format).
--   **Password Reset:** `make reset-password user=USER pass=PASS` (Resets a user password).
-    -   *Inside a container:* `NO_MONKEY_PATCH=1 FLASK_APP=src/app.py flask reset-password USERNAME PASSWORD`
--   **Cleanup:** `make clean` (Removes caches and `.venv`).
--   **Publish Image:** `make publish TAG=vx.y.z` (Pushes to `flvbssln/mqtt-antena`).
--   **Destroy Project:** `make destroy` (Removes local containers, images, and volumes).
 
 ##  How to Use
-
+### Register new user or login page:
+You need to create a new user in order to use the application.
 ![Create user](./docs/img/mqtt-antena-login.gif)
 <br><br>
+### Register Broker:
+After login you need to register a new broker. Once the broker is registered you can connect to it in order to start using (sending or receiving messages).
 ![Register Broker](./docs/img/mqtt-antena-register-broker.gif)
 <br><br>
+### Subscribe to topics:
+Once connected to a broker you can subscribe to topics. You can use wildcards (`#`) to subscribe to all the topics.
+
+*Subscribing to all the topics:*
 ![Subscribe](./docs/img/mqtt-antena-subscribe.gif)
 <br><br>
+*Subscribing to a specific topic:*
+![Subscribe](./docs/img/img-subscription1.png)
+<br><br>
+### Publish messages:
+Once connected to a broker you can publish messages to topics. You can specify QoS level and Retain flag.
 ![Publish](./docs/img/mqtt-antena-publish.gif)
 
 ##  License
