@@ -39,7 +39,7 @@ MQTT Antena is a simple, modern, web-based MQTT client application built with Py
 
 ### Quick Start 
 🐳 **Running on a Docker Container**
-[Dockerhub](https://hub.docker.com/r/fbossolan/mqtt-antena)
+[(see Dockerhub)](https://hub.docker.com/r/fbossolan/mqtt-antena)
 
 The easiest way to get started is to create a docker container:
 ```bash
