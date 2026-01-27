@@ -391,4 +391,8 @@ def publish():
 
 
 if __name__ == "__main__":
+    print("\n-------------------------------------------")
+    print(" 📡 MQTT Antena is starting!")
+    print(" Access it at: http://localhost:8585")
+    print("-------------------------------------------\n")
     app.run(host="0.0.0.0", port=8585, debug=True)
