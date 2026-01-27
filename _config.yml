@@ -12,6 +12,9 @@ minima:
      - title: MQTT Antena repository at GitHub
        icon: github
        url: "https://github.com/fbossolan/mqtt-antena/tree/main"
+     - title: MQTT Antena Dockerhub
+       icon: docker
+       url: "https://hub.docker.com/r/fbossolan/mqtt-antena"
     #  - title: Jekyll at X (formerly Twitter)
     #    icon: x-twitter
     #    url: "https://x.com/jekyllrb"

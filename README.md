@@ -38,7 +38,8 @@ MQTT Antena is a simple, modern, web-based MQTT client application built with Py
 ##  Getting Started
 
 ### Quick Start 
-🐳 **Running with Docker**
+🐳 **Running on a Docker Container**
+[Dockerhub](https://hub.docker.com/r/fbossolan/mqtt-antena)
 
 The easiest way to get started is to create a docker container:
 ```bash
@@ -84,7 +85,7 @@ No matter the way you choose to run the application it can be accessed at [http:
 You need to create a new user in order to use the application.
 ![Create user](./docs/img/mqtt-antena-login.gif)
 <br><br>
-### Register Broker:
+### Register a Broker:
 After login you need to register a new broker. Once the broker is registered you can connect to it in order to start using (sending or receiving messages).
 ![Register Broker](./docs/img/mqtt-antena-register-broker.gif)
 <br><br>
@@ -102,7 +103,7 @@ Once connected to a broker you can publish messages to topics. You can specify Q
 ![Publish](./docs/img/mqtt-antena-publish.gif)
 <br><br>
 ### Password Reset:
-Inside a container's terminal, run:
+In case you need to change your password, you can reset it inside a container's terminal, just run:
 ```
 NO_MONKEY_PATCH=1 FLASK_APP=src/app.py flask reset-password <USERNAME> <NEW PASSWORD>
 ```
