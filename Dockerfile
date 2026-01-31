@@ -9,7 +9,8 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 COPY . .
-RUN mkdir -p data
+# No need to mkdir -p data here; the app handles it,
+# and for HA, /data is mounted from the host.
 
 EXPOSE 8585
 

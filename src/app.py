@@ -32,9 +32,15 @@ from mqtt_manager import (  # noqa: E402
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "super_secret_key_dev_only")
 
-data_dir = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data"
-)
+# Determine data directory: if /data exists (standard for HA addons), use it.
+# Otherwise, fall back to project-relative 'data' directory.
+if os.path.exists("/data"):
+    data_dir = "/data"
+else:
+    data_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data"
+    )
+
 os.makedirs(data_dir, exist_ok=True)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = (
