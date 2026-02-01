@@ -46,7 +46,7 @@ publish: ## Build and push multi-arch image to Docker Hub
 		TAG_TO_USE=$(VERSION_TAG); \
 		echo "TAG not provided, using VERSION: $$TAG_TO_USE"; \
 	fi; \
-	docker buildx build --platform linux/amd64,linux/arm64 --push \
+	docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 --push \
 		--build-arg PYTHON_VERSION=$(PYTHON_VERSION_ARG) \
 		-t $(DOCKER_USER)/$(IMAGE_NAME):$$TAG_TO_USE \
 		-t $(DOCKER_USER)/$(IMAGE_NAME):latest .
