@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 
 
 
+### Build System
+
+- new release
+
+
 ### Documentation
 
 - adding images to readme
@@ -17,12 +22,34 @@ All notable changes to this project will be documented in this file.
 
 - specifying command to reset a user's  password
 
+- adding new sections to the documentation
+
+- adding links to dockerhub
+
+- adding links to dockerhub
+
+- Updating the how-to guide
+
+- updating site layout
+
 
 ### Features
 
 - command to run without docker
 
 - updating the instructions to set up
+
+- updating site description
+
+- Logging in the terminal  the url to see the application
+
+- adding contrib badge
+
+- adding contrib badge
+
+- adapt the data dir so that HASS addon will not have any conflicts
+
+- providing more linux platforms for image build
 
 
 ### Maintenance
@@ -32,6 +59,10 @@ All notable changes to this project will be documented in this file.
 - ignoring changelog commit messages
 
 - ignoring development files
+
+- update changelog
+
+- deleting unnecessary coment lines
 
 
 ## [v1.4.0] - 2026-01-26
