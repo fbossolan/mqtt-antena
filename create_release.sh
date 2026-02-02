@@ -59,3 +59,4 @@ git commit -m "chore: update changelog"
 git push origin main
 
 echo "✅ Release v$VERSION created successfully"
+
