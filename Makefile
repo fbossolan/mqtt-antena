@@ -14,10 +14,11 @@ help: ## Show this help message
 
 venv: $(VENV)/bin/activate ## Create and sync the virtual environment
 
-$(VENV)/bin/activate: requirements.txt
+$(VENV)/bin/activate: requirements.txt requirements-dev.txt
 	test -d $(VENV) || python3 -m venv $(VENV)
 	$(PIP) install --upgrade pip
 	$(PIP) install -r requirements.txt
+	$(PIP) install -r requirements-dev.txt
 	touch $(VENV)/bin/activate
 
 build: ## Build the Docker image (local architecture)
