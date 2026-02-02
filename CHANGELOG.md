@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 
 
 
+### Bug Fixes
+
+- fixing library import
+
+- fix mergin issue
+
+
+### Features
+
+- linting
+
+
+### Maintenance
+
+- release v1.5.0
+
+- release v1.5.1
+
+
+## [v1.5.0] - 2026-02-01
+
+
+
 ### Build System
 
 - new release
@@ -63,6 +86,8 @@ All notable changes to this project will be documented in this file.
 - update changelog
 
 - deleting unnecessary coment lines
+
+- update changelog
 
 
 ## [v1.4.0] - 2026-01-26
