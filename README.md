@@ -1,6 +1,5 @@
-![Dockerhub Pulls](https://img.shields.io/docker/pulls/fbossolan/mqtt-antena.svg)
+[![Dockerhub Pulls](https://img.shields.io/docker/pulls/fbossolan/mqtt-antena.svg)](https://hub.docker.com/r/fbossolan/mqtt-antena)
 ![CI](https://github.com/fbossolan/mqtt-antena/actions/workflows/ci.yml/badge.svg)
-![CD](https://github.com/fbossolan/mqtt-antena/actions/workflows/cd.yml/badge.svg)
 ![Documentation](https://github.com/fbossolan/mqtt-antena/actions/workflows/pages/pages-build-deployment/badge.svg)
 [![Donate with PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=BB9EBVFNDPJUY)
 
