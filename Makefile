@@ -70,5 +70,5 @@ release: ## Update the VERSION file (usage: make release v=1.2.3)
 	@if [ -z "$(v)" ]; then echo "Error: v is not set. Use 'make release v=1.2.3'"; exit 1; fi
 	@echo "$(v)" > VERSION
 	@echo "Version updated to $(v) in VERSION file"
-	@git diff-index --quiet HEAD -- || git add VERSION && git commit -m "chore: release v$(v)"
+	@git diff-index --quiet HEAD -- || git add VERSION && git commit -m "feat: release v$(v)"
 	@./create_release.sh $(v)
