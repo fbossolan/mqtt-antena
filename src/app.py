@@ -378,6 +378,7 @@ def stream():
     # Disable buffering in Nginx (crucial for HA Ingress)
     response.headers["X-Accel-Buffering"] = "no"
     response.headers["Cache-Control"] = "no-cache"
+    response.headers["Connection"] = "keep-alive"
     return response
 
 
