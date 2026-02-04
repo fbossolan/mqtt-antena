@@ -78,12 +78,20 @@ def test_mqtt_connection_failure(app):
 
         client = add_client(broker_obj)
         connected, error = client.connect()
-        assert connected is False
-        # Case-insensitive check
-        error_lower = error.lower()
-        assert (
-            "timed out" in error_lower
-            or "refused" in error_lower
-            or "error" in error_lower
-        )
+
+        # connect_async() returns True immediately (connection initiated)
+        # The actual failure is detected later in the on_connect callback
+        assert connected is True
+
+        # Wait for the connection attempt to fail
+        for _ in range(100):  # 10 seconds timeout
+            if client.connection_error or client.is_connected:
+                break
+            time.sleep(0.1)
+
+        # Verify that connection failed (is_connected should still be False)
+        assert client.is_connected is False
+        # There should be a connection error recorded
+        assert client.connection_error is not None
+
         remove_client(broker_obj.id)

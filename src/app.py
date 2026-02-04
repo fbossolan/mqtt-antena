@@ -1,10 +1,11 @@
-import gevent.monkey
+# CRITICAL: gevent monkey-patching MUST happen before any other imports
+# This makes paho-mqtt's blocking socket operations cooperative with gevent's event loop
+import gevent.monkey  # noqa: E402
 
 gevent.monkey.patch_all()
 
-import os
-import json
-import click
+import os  # noqa: E402
+import click  # noqa: E402
 
 from flask_socketio import SocketIO, emit, join_room  # noqa: E402
 from flask import (  # noqa: E402
