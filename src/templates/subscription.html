@@ -45,37 +45,43 @@
     </div>
 </div>
 
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 <script>
     const messagesDiv = document.getElementById('messages');
-    let evtSource = null;
+    let socket = null;
 
     function startStream() {
-        if (evtSource) { return; }
-        const streamUrl = "{{ url_for('stream') }}";
-        console.log("Starting SSE stream connecting to:", streamUrl);
+        if (socket) { return; }
+        console.log("Starting Socket.IO connection...");
         document.getElementById('sseState').innerText = "Connecting...";
-        evtSource = new EventSource(streamUrl);
 
-        evtSource.onopen = function () {
-            console.log("SSE Connection Opened");
-            document.getElementById('sseState').innerText = "Connected (Open)";
+        socket = io();
+
+        socket.on('connect', function () {
+            console.log("Socket.IO Connected");
+            document.getElementById('sseState').innerText = "Connected";
             document.getElementById('sseState').style.color = "green";
-        };
+        });
 
-        evtSource.onmessage = function (e) {
-            console.log("SSE Message Received:", e.data);
-            const data = JSON.parse(e.data);
+        socket.on('mqtt_message', function (data) {
+            console.log("MQTT Message Received:", data);
             const line = document.createElement('div');
             line.className = 'msg-line';
             line.innerHTML = `<span class="msg-time">[${data.timestamp}]</span> <strong>${data.broker_name}</strong> | ${data.topic}: <span style="color: #fff;">${data.payload}</span>`;
             messagesDiv.appendChild(line);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        };
+        });
 
-        evtSource.onerror = function (e) {
-            console.error("EventSource failed:", e);
-            console.log("EventSource readyState:", evtSource.readyState);
-        };
+        socket.on('disconnect', function () {
+            console.log("Socket.IO Disconnected");
+            document.getElementById('sseState').innerText = "Disconnected";
+            document.getElementById('sseState').style.color = "red";
+        });
+
+        socket.on('error', function (err) {
+            console.error("Socket.IO Error:", err);
+        });
     }
 
     startStream();
