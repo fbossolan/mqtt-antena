@@ -1,6 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v1.5.3] - 2026-02-04
+
+
+
+### Features
+
+- add support for HA ingress and fix SSE buffering
+
+- release v1.5.3
+
+- updating the version
+
+- release v1.5.3
+
+- adaping routing for hass addon
+
+- release v1.5.3
+
+
+### Maintenance
+
+- update changelog
+
+
 ## [v1.5.2] - 2026-02-04
 
 
