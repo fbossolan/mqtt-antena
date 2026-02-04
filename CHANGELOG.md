@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [v1.5.2] - 2026-02-04
 
 
 
@@ -24,6 +24,8 @@ All notable changes to this project will be documented in this file.
 ### Maintenance
 
 - organizing makefile
+
+- update changelog
 
 
 ## [v1.5.1] - 2026-02-02
