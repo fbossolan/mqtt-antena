@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [v1.5.4] - 2026-02-04
 
 
 
@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 
 
 ### Features
+
+- release v1.5.4
 
 - release v1.5.4
 
