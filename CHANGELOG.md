@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 
 - use async connect to prevent gevent blocking
 
+- fixing the latency when loading events
+
 
 ### Build System
 
@@ -22,6 +24,8 @@ All notable changes to this project will be documented in this file.
 ### Features
 
 - add flask-socketio for websocket support
+
+- release v1.5.6
 
 
 ### Maintenance
