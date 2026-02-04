@@ -148,3 +148,23 @@ def test_publish_with_qos_and_retain(client, mocker):
     mock_client.publish.assert_called_once_with(
         "test/topic", "hello world", qos=1, retain=True
     )
+
+
+def test_ingress_middleware(client):
+    """Test that X-Ingress-Path header sets SCRIPT_NAME correctly."""
+    # Simulate a request coming from HA Ingress
+    ingress_path = "/api/hassio_ingress/token123"
+
+    # We simply hit the root URL. If middleware works, url_for generation
+    # inside the app (e.g., redirect to login) should prepend the ingress path.
+    # The / route redirects to /login if not logged in.
+    rv = client.get(
+        "/",
+        headers={"X-Ingress-Path": ingress_path},
+        follow_redirects=False,  # We want to check the Location header
+    )
+
+    assert rv.status_code == 302
+    # The redirect location should include the ingress path
+    assert ingress_path in rv.location
+    assert rv.location.endswith("/login")

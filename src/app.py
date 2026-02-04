@@ -29,7 +29,19 @@ from mqtt_manager import (  # noqa: E402
 )
 
 
+class IngressMiddleware:
+    def __init__(self, app):
+        self.app = app
+
+    def __call__(self, environ, start_response):
+        script_name = environ.get("HTTP_X_INGRESS_PATH", "")
+        if script_name:
+            environ["SCRIPT_NAME"] = script_name
+        return self.app(environ, start_response)
+
+
 app = Flask(__name__)
+app.wsgi_app = IngressMiddleware(app.wsgi_app)
 app.secret_key = os.environ.get("SECRET_KEY", "super_secret_key_dev_only")
 
 # Determine data directory: if /data exists (standard for HA addons), use it.
