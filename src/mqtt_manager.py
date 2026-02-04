@@ -51,7 +51,7 @@ class ActiveClient:
     def connect(self):
         """Establish a connection to the MQTT broker and start the loop."""
         try:
-            self.client.connect(self.ip, self.port, 60)
+            self.client.connect_async(self.ip, self.port, 60)
             self.client.loop_start()
             return True, None
         except Exception as e:
