@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 
 
 
+### Documentation
+
+- updating documentation
+
+
+### Features
+
+- having a requirement file for dev specifically
+
+- updating Dockerfile for a better build for different plstforms
+
+- adaping routing for hass addon
+
+- release v1.5.2
+
+
+### Maintenance
+
+- organizing makefile
+
+
+## [v1.5.1] - 2026-02-02
+
+
+
 ### Bug Fixes
 
 - fixing library import
@@ -22,6 +47,8 @@ All notable changes to this project will be documented in this file.
 - release v1.5.0
 
 - release v1.5.1
+
+- update changelog
 
 
 ## [v1.5.0] - 2026-02-01
