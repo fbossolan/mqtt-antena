@@ -349,6 +349,7 @@ def stream():
 
     def event_stream():
         """Generator function for streaming messages via SSE."""
+        print(f"SSE Client connected: {session.get('user_id')}", flush=True)
         import queue
 
         q = queue.Queue()

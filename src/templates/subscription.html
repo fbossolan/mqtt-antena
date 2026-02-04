@@ -53,6 +53,7 @@
         evtSource = new EventSource(streamUrl);
 
         evtSource.onmessage = function (e) {
+            console.log("SSE Message Received:", e.data);
             const data = JSON.parse(e.data);
             const line = document.createElement('div');
             line.className = 'msg-line';
