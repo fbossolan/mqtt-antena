@@ -2,6 +2,7 @@ import os
 import json
 import click
 
+from flask_socketio import SocketIO, emit, join_room  # noqa: E402
 from flask import (  # noqa: E402
     Flask,
     render_template,
@@ -10,16 +11,13 @@ from flask import (  # noqa: E402
     url_for,
     flash,
     session,
-    Response,
-    stream_with_context,
 )
 from database import db, User, Broker  # noqa: E402
 from mqtt_manager import (  # noqa: E402
     add_client,
     get_client,
     remove_client,
-    listeners,
-    listeners_lock,
+    set_socketio,
 )
 
 
@@ -36,6 +34,7 @@ class IngressMiddleware:
 
 app = Flask(__name__)
 app.wsgi_app = IngressMiddleware(app.wsgi_app)
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode="gevent")
 app.secret_key = os.environ.get("SECRET_KEY", "super_secret_key_dev_only")
 
 # Determine data directory: if /data exists (standard for HA addons), use it.
@@ -336,51 +335,25 @@ def toggle_listen():
     return redirect(url_for("subscription"))
 
 
-@app.route("/stream")
-@login_required
-def stream():
-    """Server-Sent Events (SSE) stream for real-time MQTT messages."""
+# Pass socketio instance to mqtt_manager for broadcasting
+set_socketio(socketio)
 
-    def event_stream():
-        """Generator function for streaming messages via SSE."""
-        print(f"SSE Client connected: {session.get('user_id')}", flush=True)
-        import queue
 
-        q = queue.Queue()
-        user_id = session["user_id"]
-        with listeners_lock:
-            if user_id not in listeners:
-                listeners[user_id] = []
-            listeners[user_id].append(q)
-        try:
-            # Send padding to check if it forces buffer flush (increase to 16KB to beat larger buffers)
-            yield f": {' ' * 16384}\n\n"
+@socketio.on("connect")
+def handle_connect():
+    """Handle Socket.IO client connection."""
+    if "user_id" not in session:
+        return False  # Reject connection if not logged in
+    user_id = session["user_id"]
+    join_room(f"user_{user_id}")
+    print(f"Socket.IO Client connected: {user_id}", flush=True)
+    return True
 
-            while True:
-                # 5s timeout to send keepalive (faster heartbeat)
-                try:
-                    msg = q.get(timeout=5)
-                    yield f"data: {json.dumps(msg)}\n\n"
-                    # Allow context switch
-                    eventlet.sleep(0)
-                except queue.Empty:
-                    yield ": keepalive\n\n"
-                    eventlet.sleep(0)
-        except GeneratorExit:
-            with listeners_lock:
-                if user_id in listeners:
-                    listeners[user_id].remove(q)
-                    if not listeners[user_id]:
-                        del listeners[user_id]
 
-    response = Response(
-        stream_with_context(event_stream()), mimetype="text/event-stream"
-    )
-    # Disable buffering in Nginx (crucial for HA Ingress)
-    response.headers["X-Accel-Buffering"] = "no"
-    response.headers["Cache-Control"] = "no-cache"
-    response.headers["Connection"] = "keep-alive"
-    return response
+@socketio.on("disconnect")
+def handle_disconnect():
+    """Handle Socket.IO client disconnection."""
+    print(f"Socket.IO Client disconnected: {session.get('user_id')}", flush=True)
 
 
 @app.route("/publish", methods=["GET", "POST"])
