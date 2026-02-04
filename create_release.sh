@@ -9,17 +9,31 @@ if [ -z "$VERSION" ]; then
   exit 1
 fi
 
+# Checks branch
+BRANCH=$(git branch --show-current)
+if [ "$BRANCH" == "main" ]; then
+  echo "You need to be in the feature branch you want to merge"
+  exit 1
+fi
+
+# Updates version file
+echo "$VERSION" > VERSION
+echo "Version updated to $VERSION in VERSION file"
+
+git add VERSION
+git commit -m "feat: release v$VERSION"
+
+# generating changelog
+echo "Generating changelog"
+git cliff -o CHANGELOG.md
+git add CHANGELOG.md
+git commit -m "feat: release v$VERSION"
+
 # Checks clean working tree
 if ! git diff-index --quiet HEAD --; then
   echo "There are uncommitted changes"
   git status
   exit 1
-fi
-
-# Checks branch
-BRANCH=$(git branch --show-current)
-if [ "$BRANCH" != "main" ]; then
-  git checkout main
 fi
 
 # checks if it is ok to merge
@@ -28,6 +42,11 @@ git fetch origin && \
 git merge-base --is-ancestor origin/main HEAD && \
 echo "OK to merge" || (echo "Rebase or merge main first" && exit 1)
 
+# Checks branch
+BRANCH=$(git branch --show-current)
+if [ "$BRANCH" != "main" ]; then
+  git checkout main
+fi
 
 # Updates main & merges
 echo "Updating main"
@@ -35,12 +54,6 @@ git pull origin main
 
 echo "Merging $BRANCH into main"
 git merge $BRANCH
-
-# generating changelog
-echo "Generating changelog"
-git cliff -o CHANGELOG.md
-git add CHANGELOG.md
-git commit -m "chore: update changelog"
 
 # Creates annotated tag
 echo "Creating tag v$VERSION"
