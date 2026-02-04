@@ -359,8 +359,8 @@ def stream():
                 listeners[user_id] = []
             listeners[user_id].append(q)
         try:
-            # Send padding to check if it forces buffer flush (start with 2KB comment)
-            yield f": {' ' * 2048}\n\n"
+            # Send padding to check if it forces buffer flush (increase to 16KB to beat larger buffers)
+            yield f": {' ' * 16384}\n\n"
 
             while True:
                 # 5s timeout to send keepalive (faster heartbeat)
