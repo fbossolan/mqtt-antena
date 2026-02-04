@@ -19,15 +19,18 @@ fi
 # Updates version file
 echo "$VERSION" > VERSION
 echo "Version updated to $VERSION in VERSION file"
-
 git add VERSION
-git commit -m "feat: release v$VERSION"
 
 # generating changelog
 echo "Generating changelog"
 git cliff -o CHANGELOG.md
 git add CHANGELOG.md
-git commit -m "feat: release v$VERSION"
+
+if [ -z "$(git status --porcelain)" ]; then
+  echo "No changes to commit"
+else
+  git commit -m "feat: release v$VERSION"
+fi
 
 # Checks clean working tree
 if ! git diff-index --quiet HEAD --; then
