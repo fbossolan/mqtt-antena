@@ -1,12 +1,16 @@
 import time
-import queue
+from unittest.mock import MagicMock
 from database import db, Broker
-from mqtt_manager import add_client, remove_client, listeners, listeners_lock
+from mqtt_manager import add_client, remove_client, set_socketio
 
 
 def test_mqtt_flow(app, mqtt_broker):
-    """Verify full MQTT cycle: connect, subscribe, publish, and receive."""
+    """Verify full MQTT cycle: connect, subscribe, publish, and broadcast via Socket.IO."""
     with app.app_context():
+        # Mock Socket.IO instance
+        mock_socketio = MagicMock()
+        set_socketio(mock_socketio)
+
         # 1. Setup a test broker in DB
         broker_obj = Broker(
             name="Integration Test Broker",
@@ -37,31 +41,26 @@ def test_mqtt_flow(app, mqtt_broker):
             client.update_subscription(topic)
             time.sleep(1)  # Wait for subscription to be processed
 
-            # 4. Setup SSE listener queue
-            test_queue = queue.Queue()
-            user_id = 1
-            with listeners_lock:
-                if user_id not in listeners:
-                    listeners[user_id] = []
-                listeners[user_id].append(test_queue)
+            # 4. Publish
+            message = "Hello MQTT"
+            client.publish(topic, message)
 
-            try:
-                # 5. Publish
-                message = "Hello MQTT"
-                client.publish(topic, message)
+            # 5. Wait for message to be broadcast via Socket.IO
+            # The MQTT on_message callback should trigger socketio.emit()
+            for _ in range(50):  # 5 seconds timeout
+                if mock_socketio.emit.called:
+                    break
+                time.sleep(0.1)
 
-                # 6. Wait for message in queue
-                # Increased timeout to allow for network/docker latency
-                received = test_queue.get(timeout=5)
-
-                assert received["topic"] == topic
-                assert received["payload"] == message
-                assert "timestamp" in received
-
-            finally:
-                with listeners_lock:
-                    if user_id in listeners:
-                        listeners[user_id].remove(test_queue)
+            # 6. Verify Socket.IO emit was called with correct data
+            assert mock_socketio.emit.called, "Socket.IO emit was not called"
+            call_args = mock_socketio.emit.call_args
+            assert call_args[0][0] == "mqtt_message"  # Event name
+            message_data = call_args[0][1]  # Data payload
+            assert message_data["topic"] == topic
+            assert message_data["payload"] == message
+            assert "timestamp" in message_data
+            assert call_args[1]["room"] == "user_1"  # Room matches user_id
 
         finally:
             remove_client(broker_obj.id)
