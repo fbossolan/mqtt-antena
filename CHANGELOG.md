@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+
+
+### Bug Fixes
+
+- removing duplicate messages in CHANGELOG generation
+
+
+### Maintenance
+
+- update changelog
+
+
 ## [v1.5.5] - 2026-02-04
 
 
@@ -11,10 +25,6 @@ All notable changes to this project will be documented in this file.
 
 
 ### Features
-
-- release v1.5.5
-
-- release v1.5.5
 
 - release v1.5.5
 
@@ -44,8 +54,6 @@ All notable changes to this project will be documented in this file.
 
 - release v1.5.4
 
-- release v1.5.4
-
 
 ### Maintenance
 
@@ -66,11 +74,7 @@ All notable changes to this project will be documented in this file.
 
 - updating the version
 
-- release v1.5.3
-
 - adaping routing for hass addon
-
-- release v1.5.3
 
 
 ### Maintenance
@@ -147,13 +151,9 @@ All notable changes to this project will be documented in this file.
 
 - adding analytics in project page
 
-- adding analytics in project page
-
 - specifying command to reset a user's  password
 
 - adding new sections to the documentation
-
-- adding links to dockerhub
 
 - adding links to dockerhub
 
@@ -174,8 +174,6 @@ All notable changes to this project will be documented in this file.
 
 - adding contrib badge
 
-- adding contrib badge
-
 - adapt the data dir so that HASS addon will not have any conflicts
 
 - providing more linux platforms for image build
@@ -189,11 +187,7 @@ All notable changes to this project will be documented in this file.
 
 - ignoring development files
 
-- update changelog
-
 - deleting unnecessary coment lines
-
-- update changelog
 
 
 ## [v1.4.0] - 2026-01-26
@@ -215,8 +209,6 @@ All notable changes to this project will be documented in this file.
 - update changelog
 
 - release v1.4.0
-
-- update changelog
 
 
 ## [v1.3.2] - 2026-01-26
@@ -257,8 +249,6 @@ All notable changes to this project will be documented in this file.
 
 - updating cd file
 
-- updating cd file
-
 
 ### Features
 
@@ -273,13 +263,9 @@ All notable changes to this project will be documented in this file.
 
 - changing docker username
 
-- changing docker username
-
 - update changelog
 
 - release v1.3.1
-
-- update changelog
 
 
 ## [v1.3.0] - 2026-01-19
@@ -297,10 +283,6 @@ All notable changes to this project will be documented in this file.
 
 - fix broken steps in the release script
 
-- fix broken steps in the release script
-
-- fix broken steps in the release script
-
 - adding unit tests
 
 
@@ -308,13 +290,7 @@ All notable changes to this project will be documented in this file.
 
 - update changelog
 
-- update changelog
-
-- update changelog
-
 - release v1.3.0
-
-- update changelog
 
 
 ## [v1.2.0] - 2026-01-19
@@ -340,12 +316,6 @@ All notable changes to this project will be documented in this file.
 - configuring precommit
 
 - creating commands to generate a release
-
-- creating commands to generate a release
-
-- script for automating releases
-
-- script for automating releases
 
 - script for automating releases
 
@@ -377,8 +347,6 @@ All notable changes to this project will be documented in this file.
 
 
 ### Features
-
-- help recipe
 
 - help recipe
 
