@@ -39,5 +39,5 @@ COPY . .
 
 EXPOSE 8585
 
-# Using gunicorn with eventlet for SSE support
-CMD ["gunicorn", "--worker-class", "eventlet", "-w", "1", "-b", "0.0.0.0:8585", "--chdir", "src", "app:app"]
+# Using gunicorn with ge event for WebSocket support
+CMD ["gunicorn", "--worker-class", "gevent", "-w", "1", "-b", "0.0.0.0:8585", "--chdir", "src", "app:app"]
