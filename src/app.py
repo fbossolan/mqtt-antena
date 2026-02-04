@@ -1,10 +1,4 @@
 import os
-
-if os.environ.get("NO_MONKEY_PATCH") != "1":
-    import eventlet
-
-    eventlet.monkey_patch()
-
 import json
 import click
 

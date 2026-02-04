@@ -2,8 +2,7 @@ Flask==3.1.2
 Flask-SQLAlchemy==3.1.1
 paho-mqtt
 gunicorn
-eventlet
+gevent
 flask-socketio
 python-socketio
 simple-websocket
-eventlet==0.40.4
