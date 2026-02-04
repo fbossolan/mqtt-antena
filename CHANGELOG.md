@@ -7,6 +7,20 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
+- implement padding strategy for buffering
+
+
+### Features
+
+- release v1.5.5
+
+
+## [v1.5.4] - 2026-02-04
+
+
+
+### Bug Fixes
+
 - add keep-alive header and frontend debug logs
 
 - add granular debugging logs
