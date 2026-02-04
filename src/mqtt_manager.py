@@ -1,25 +1,24 @@
 import paho.mqtt.client as mqtt
 from datetime import datetime
 import threading
-import queue
 import time
 
 connected_clients = {}
 
-# listeners = { user_id: [queue1, queue2, ...] }
-listeners = {}
-listeners_lock = threading.Lock()
+# Socket.IO instance will be set by app.py
+socketio = None
+
+
+def set_socketio(sio):
+    """Set the socketio instance for broadcasting messages."""
+    global socketio
+    socketio = sio
 
 
 def broadcast_message(user_id, message_data):
-    """Push message to all active SSE listeners of a specific user"""
-    with listeners_lock:
-        user_listeners = listeners.get(user_id, [])
-        for q in user_listeners:
-            try:
-                q.put_nowait(message_data)
-            except queue.Full:
-                pass
+    """Push message to all active Socket.IO clients of a specific user"""
+    if socketio:
+        socketio.emit("mqtt_message", message_data, room=f"user_{user_id}")
 
 
 class ActiveClient:
