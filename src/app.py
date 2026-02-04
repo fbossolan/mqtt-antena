@@ -359,13 +359,19 @@ def stream():
                 listeners[user_id] = []
             listeners[user_id].append(q)
         try:
+            # Send padding to check if it forces buffer flush (start with 2KB comment)
+            yield f": {' ' * 2048}\n\n"
+
             while True:
-                # 30s timeout to send keepalive
+                # 5s timeout to send keepalive (faster heartbeat)
                 try:
-                    msg = q.get(timeout=20)
+                    msg = q.get(timeout=5)
                     yield f"data: {json.dumps(msg)}\n\n"
+                    # Allow context switch
+                    eventlet.sleep(0)
                 except queue.Empty:
                     yield ": keepalive\n\n"
+                    eventlet.sleep(0)
         except GeneratorExit:
             with listeners_lock:
                 if user_id in listeners:

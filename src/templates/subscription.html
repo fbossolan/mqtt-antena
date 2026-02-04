@@ -37,6 +37,9 @@
 
         <!-- Right: Message Log -->
         <div style="flex: 3; min-width: 300px;">
+            <div id="connectionStatus" style="font-size: 0.8rem; margin-bottom: 5px; color: #888;">
+                SSE Status: <span id="sseState">Disconnected</span>
+            </div>
             <div id="messages"></div>
         </div>
     </div>
@@ -50,7 +53,14 @@
         if (evtSource) { return; }
         const streamUrl = "{{ url_for('stream') }}";
         console.log("Starting SSE stream connecting to:", streamUrl);
+        document.getElementById('sseState').innerText = "Connecting...";
         evtSource = new EventSource(streamUrl);
+
+        evtSource.onopen = function () {
+            console.log("SSE Connection Opened");
+            document.getElementById('sseState').innerText = "Connected (Open)";
+            document.getElementById('sseState').style.color = "green";
+        };
 
         evtSource.onmessage = function (e) {
             console.log("SSE Message Received:", e.data);
