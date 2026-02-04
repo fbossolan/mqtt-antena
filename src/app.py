@@ -7,7 +7,7 @@ gevent.monkey.patch_all()
 import os  # noqa: E402
 import click  # noqa: E402
 
-from flask_socketio import SocketIO, emit, join_room  # noqa: E402
+from flask_socketio import SocketIO, join_room  # noqa: E402
 from flask import (  # noqa: E402
     Flask,
     render_template,
