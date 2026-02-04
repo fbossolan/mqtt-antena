@@ -372,7 +372,13 @@ def stream():
                     if not listeners[user_id]:
                         del listeners[user_id]
 
-    return Response(stream_with_context(event_stream()), mimetype="text/event-stream")
+    response = Response(
+        stream_with_context(event_stream()), mimetype="text/event-stream"
+    )
+    # Disable buffering in Nginx (crucial for HA Ingress)
+    response.headers["X-Accel-Buffering"] = "no"
+    response.headers["Cache-Control"] = "no-cache"
+    return response
 
 
 @app.route("/publish", methods=["GET", "POST"])
