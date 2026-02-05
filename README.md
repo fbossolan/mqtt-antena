@@ -1,13 +1,17 @@
 [![Dockerhub Pulls](https://img.shields.io/docker/pulls/fbossolan/mqtt-antena.svg)](https://hub.docker.com/r/fbossolan/mqtt-antena)
 ![CI](https://github.com/fbossolan/mqtt-antena/actions/workflows/ci.yml/badge.svg)
+![CD](https://github.com/fbossolan/mqtt-antena/actions/workflows/cd.yml/badge.svg)
 ![Documentation](https://github.com/fbossolan/mqtt-antena/actions/workflows/pages/pages-build-deployment/badge.svg)
 [![Donate with PayPal](https://img.shields.io/badge/Donate-PayPal-blue?logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=BB9EBVFNDPJUY)
 
-
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Ffbossolan%2Fmqtt-antena-hass-addon)
 
 📡 MQTT Antena
 
 MQTT Antena is a simple, modern, web-based MQTT client application built with Python and Flask. It allows users to manage multiple MQTT broker connections by connecting to a broker, monitor real-time message streams, and publish messages through a clean web interface. It is intended to be used as a development/analysis tool for self-hosted MQTT-based applications. It is very useful for testing and debugging IoT messages between sensors and applications.
+
+**You can use it as a standalone application or as a Home Assistant add-on.**
+
 <br><br>
 ![Subscriptions](./docs/img/img-subscription2.png)
 
