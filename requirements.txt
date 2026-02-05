@@ -1,8 +1,8 @@
 Flask==3.1.2
 Flask-SQLAlchemy==3.1.1
-paho-mqtt
-gunicorn
-gevent
-flask-socketio
-python-socketio
-simple-websocket
+paho-mqtt==2.1.0
+gunicorn==23.0.0
+gevent==25.9.1
+flask-socketio==5.6.0
+python-socketio==5.16.0
+simple-websocket==1.1.0
