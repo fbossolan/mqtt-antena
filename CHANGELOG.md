@@ -1,13 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [v1.5.7] - 2026-02-05
 
 
 
 ### Bug Fixes
 
 - configure client path for HA Ingress compatibility
+
+
+### Features
+
+- release 1.5.7
 
 
 ### Maintenance
