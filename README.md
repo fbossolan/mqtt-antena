@@ -20,7 +20,7 @@ MQTT Antena is a simple, modern, web-based MQTT client application built with Py
 -   **User Accounts:** Simple registration (with password confirmation) and login system.
 -   **Password Reset:** Command-line tool for resetting user passwords.
 -   **Broker Management:** Add, edit, connect, and delete multiple MQTT broker connections.
--   **Live Subscription:** Real-time message monitoring using Server-Sent Events (SSE).
+-   **Live Subscription:** Real-time message monitoring using WebSockets (Socket.IO).
 -   **Subscription Filtering:** Subscribe to specific topics or use the wildcard `#` for all topics.
 -   **Message Publishing:** Send MQTT messages with configurable **QoS** (0, 1, 2) and **Retain** flags.
 -   **Aesthetics:** Modern, responsive UI with light and dark mode support.
@@ -111,7 +111,7 @@ Once connected to a broker you can publish messages to topics. You can specify Q
 ### Password Reset:
 In case you need to change your password, you can reset it inside a container's terminal, just run:
 ```
-NO_MONKEY_PATCH=1 FLASK_APP=src/app.py flask reset-password <USERNAME> <NEW PASSWORD>
+FLASK_APP=src/app.py flask reset-password <USERNAME> <NEW PASSWORD>
 ```
 
 ##  License
