@@ -56,7 +56,14 @@
         console.log("Starting Socket.IO connection...");
         document.getElementById('sseState').innerText = "Connecting...";
 
-        socket = io();
+        // Get the base path from the current location (includes ingress path if present)
+        const basePath = window.location.pathname.replace(/\/[^\/]*$/, '') || '';
+        const socketPath = basePath + '/socket.io';
+
+        console.log("Socket.IO connecting with path:", socketPath);
+        socket = io({
+            path: socketPath
+        });
 
         socket.on('connect', function () {
             console.log("Socket.IO Connected");
