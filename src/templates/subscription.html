@@ -37,7 +37,7 @@
 
         <!-- Right: Message Log -->
         <div style="flex: 3; min-width: 300px;">
-            <div id="connectionStatus" style="font-size: 0.8rem; margin-bottom: 5px; color: #888;">
+            <div id="connectionStatus" style="font-size: 0.8rem; margin-bottom: 5px; color: #888; display: none;">
                 SSE Status: <span id="sseState">Disconnected</span>
             </div>
             <div id="messages"></div>
@@ -101,6 +101,10 @@
     function updateFormState() {
         const select = document.getElementById('brokerSelect');
         if (select.selectedIndex === -1) return;
+
+        // Show/hide SSE Status based on broker selection
+        const connectionStatus = document.getElementById('connectionStatus');
+        connectionStatus.style.display = select.selectedIndex >= 0 ? 'block' : 'none';
 
         const option = select.options[select.selectedIndex];
         const isListening = option.getAttribute('data-listening') === 'true';
