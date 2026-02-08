@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [v1.5.8] - 2026-02-08
 
 
 
@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file.
 ### Features
 
 - display sse status based on selected broker
+
+- release v1.5.8
 
 
 ### Maintenance
