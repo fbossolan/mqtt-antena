@@ -14,6 +14,7 @@ MQTT Antena is a simple, modern, web-based MQTT client application built with Py
 
 <br><br>
 ![Subscriptions](./docs/img/img-subscription2.png)
+##[Check out the MQTT Antena Mobile App - a WIP project](https://github.com/fbossolan/mqtt-antena-mobile)
 
 ##  Features
 
