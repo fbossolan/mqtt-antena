@@ -14,7 +14,6 @@ MQTT Antena is a simple, modern, web-based MQTT client application built with Py
 
 <br><br>
 ![Subscriptions](./docs/img/img-subscription2.png)
-##[Check out the MQTT Antena Mobile App - a WIP project](https://github.com/fbossolan/mqtt-antena-mobile)
 
 ##  Features
 
@@ -114,6 +113,8 @@ In case you need to change your password, you can reset it inside a container's 
 ```
 FLASK_APP=src/app.py flask reset-password <USERNAME> <NEW PASSWORD>
 ```
+
+## [Check out the MQTT Antena Mobile App - a WIP project](https://github.com/fbossolan/mqtt-antena-mobile)
 
 ##  License
 
